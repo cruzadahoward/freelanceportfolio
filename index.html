@@ -31,6 +31,7 @@
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#skills">Skills</a>
+        <a href="#design">Design</a>
         <a href="#contact">
           <button>Let's Work Together</button>
         </a>
@@ -229,7 +230,17 @@
 
     </section>
 
-<div class="video-grid">
+<!-- =========================
+         WORK (VIDEOS)
+    ========================== -->
+    <section class="work section" id="work">
+
+      <div class="section-heading">
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2>Videos I've edited.</h2>
+      </div>
+
+      <div class="video-grid">
 
                 <!-- VIDEO 1 -->
                 <article class="video-card">
@@ -358,9 +369,78 @@
 
                 </article>
 
-            </div>
+      </div>
 
-        </section>
+    </section>
+
+
+    <!-- =========================
+         GRAPHIC DESIGN CAROUSEL
+    ========================== -->
+    <section class="design section" id="design">
+
+      <div class="section-heading">
+        <p class="eyebrow">GRAPHIC DESIGN</p>
+        <h2>Designs beyond the timeline.</h2>
+      </div>
+
+      <div class="gallery" id="designGallery" aria-roledescription="carousel" aria-label="Graphic design work">
+
+        <!-- Featured slide -->
+        <div class="gallery-stage" tabindex="0" aria-live="polite">
+          <div class="gallery-media">
+            <img id="galleryImage" src="" alt="" />
+            <div class="gallery-missing" id="galleryMissing" hidden></div>
+          </div>
+
+          <div class="gallery-caption">
+            <div>
+              <h3 id="galleryTitle"></h3>
+              <p id="galleryMeta"></p>
+            </div>
+            <span class="gallery-count" id="galleryCount"></span>
+          </div>
+        </div>
+
+        <!-- Progress + dots -->
+        <div class="gallery-progress" aria-hidden="true">
+          <span class="gallery-progress-fill" id="galleryFill"></span>
+        </div>
+        <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Choose a design"></div>
+
+        <!-- Thumbnail strip: edit these buttons to add, remove or reorder designs -->
+        <div class="gallery-thumbs" id="galleryThumbs">
+
+          <button type="button" class="thumb" data-src="./assets/design/design-1.png" data-title="Brand Poster" data-meta="Poster / Print">
+            <img src="./assets/design/design-1.png" alt="" loading="lazy" />
+          </button>
+
+          <button type="button" class="thumb" data-src="./assets/design/design-2.png" data-title="Social Media Post" data-meta="Social / Instagram">
+            <img src="./assets/design/design-2.png" alt="" loading="lazy" />
+          </button>
+
+          <button type="button" class="thumb" data-src="./assets/design/design-3.png" data-title="Logo Design" data-meta="Branding / Logo">
+            <img src="./assets/design/design-3.png" alt="" loading="lazy" />
+          </button>
+
+          <button type="button" class="thumb" data-src="./assets/design/design-4.jpg" data-title="Jersey Design" data-meta="Layout / Design">
+            <img src="./assets/design/design-4.jpg" alt="" loading="lazy" />
+          </button>
+
+          <button type="button" class="thumb" data-src="./assets/design/design-5.jpg" data-title="Event Poster" data-meta="Poster / Promotion">
+            <img src="./assets/design/design-5.jpg" alt="" loading="lazy" />
+          </button>
+
+          <button type="button" class="thumb" data-src="./assets/design/design-6.png" data-title="Brochure Cover Page" data-meta="Cover / Flyer">
+            <img src="./assets/design/design-6.png" alt="" loading="lazy" />
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
 
     <!-- =========================
      TOOLS & SOFTWARE
@@ -778,6 +858,113 @@
     revealElements.forEach(element => {
       revealObserver.observe(element);
     });
+
+
+    // Graphic design gallery: featured slide + thumbnail strip
+    (function () {
+
+      const gallery = document.getElementById("designGallery");
+      if (!gallery) return;
+
+      const stage   = gallery.querySelector(".gallery-stage");
+      const image   = document.getElementById("galleryImage");
+      const missing = document.getElementById("galleryMissing");
+      const title   = document.getElementById("galleryTitle");
+      const meta    = document.getElementById("galleryMeta");
+      const count   = document.getElementById("galleryCount");
+      const fill    = document.getElementById("galleryFill");
+      const dotsBox = document.getElementById("galleryDots");
+      const strip   = document.getElementById("galleryThumbs");
+      const thumbs  = Array.from(strip.querySelectorAll(".thumb"));
+      const total   = thumbs.length;
+      let current   = -1;
+
+      // Build dots
+      const dots = thumbs.map((thumb, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "dot";
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-label", "Show design " + (i + 1) + ": " + thumb.dataset.title);
+        dot.addEventListener("click", () => show(i));
+        dotsBox.appendChild(dot);
+        return dot;
+      });
+
+      // Show a placeholder label if an image file is missing
+      function handleMissing(label) {
+        image.hidden = true;
+        missing.hidden = false;
+        missing.textContent = label;
+      }
+
+      image.addEventListener("error", () => handleMissing("Add image: " + thumbs[current].dataset.src));
+      image.addEventListener("load", () => { image.hidden = false; missing.hidden = true; });
+
+      thumbs.forEach(thumb => {
+        thumb.querySelector("img").addEventListener("error", () => thumb.classList.add("is-missing"));
+      });
+
+      function show(index, scrollThumb = true) {
+        index = (index + total) % total;
+        if (index === current) return;
+        current = index;
+
+        const item = thumbs[index];
+
+        stage.classList.add("is-changing");
+        window.setTimeout(() => stage.classList.remove("is-changing"), 220);
+
+        image.hidden = false;
+        missing.hidden = true;
+        image.src = item.dataset.src;
+        image.alt = item.dataset.title + " — " + item.dataset.meta;
+
+        title.textContent = item.dataset.title;
+        meta.textContent  = item.dataset.meta;
+        count.textContent = (index + 1) + " / " + total;
+        fill.style.width  = ((index + 1) / total * 100) + "%";
+
+        thumbs.forEach((t, i) => {
+          t.classList.toggle("active", i === index);
+          t.setAttribute("aria-current", i === index ? "true" : "false");
+        });
+        dots.forEach((d, i) => {
+          d.classList.toggle("active", i === index);
+          d.setAttribute("aria-selected", i === index ? "true" : "false");
+        });
+
+        // Keep the active thumbnail in view without scrolling the page
+        if (scrollThumb) {
+          const left = item.offsetLeft - (strip.clientWidth - item.clientWidth) / 2;
+          strip.scrollTo({ left, behavior: "smooth" });
+        }
+      }
+
+      thumbs.forEach((thumb, i) => {
+        thumb.setAttribute("aria-label", "Show " + thumb.dataset.title);
+        thumb.addEventListener("click", () => show(i));
+      });
+
+      // Keyboard: left / right when the slide is focused
+      stage.addEventListener("keydown", event => {
+        if (event.key === "ArrowRight") { event.preventDefault(); show(current + 1); }
+        if (event.key === "ArrowLeft")  { event.preventDefault(); show(current - 1); }
+      });
+
+      // Swipe on touch screens
+      let startX = null;
+      stage.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener("touchend", e => {
+        if (startX === null) return;
+        const diff = e.changedTouches[0].clientX - startX;
+        if (Math.abs(diff) > 45) show(current + (diff < 0 ? 1 : -1));
+        startX = null;
+      }, { passive: true });
+
+      show(0, false);
+
+    })();
 
   </script>
 
