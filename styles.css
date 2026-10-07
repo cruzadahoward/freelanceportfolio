@@ -655,192 +655,70 @@ main {
 
 
 .video-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 70px 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 70px 25px;
 }
 
 .video-card {
-    min-width: 0;
+  min-width: 0;
 }
 
 .video-container {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: #111;
-    overflow: hidden;
-    border: 1px solid #252525;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #111;
+  overflow: hidden;
+  border: 1px solid #252525;
 }
 
 .video-container video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .video-overlay {
-    position: absolute;
-    pointer-events: none;
-    top: 15px;
-    left: 15px;
-    right: 15px;
+  position: absolute;
+  pointer-events: none;
+  top: 15px;
+  left: 15px;
+  right: 15px;
 
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
 }
 
 .video-info {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
 }
 
 .video-info h3 {
-    font-family: "Space Grotesk";
-    font-size: 22px;
-    margin-bottom: 6px;
+  font-family: "Manrope", sans-serif;
+  font-size: 22px;
+  margin-bottom: 6px;
 }
 
 .video-info p {
-    color: #777;
-    font-size: 13px;
+  color: #777;
+  font-size: 13px;
 }
 
 .arrow {
-    color: var(--accent);
-    font-size: 25px;
+  color: var(--accent);
+  font-size: 25px;
 }
 
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 70px 25px;
+.work {
+  border-top: 1px solid var(--border);
 }
-
-.video-card {
-    min-width: 0;
-}
-
-.video-container {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: #111;
-    overflow: hidden;
-    border: 1px solid #252525;
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-}
-
-.video-overlay {
-    position: absolute;
-    pointer-events: none;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-
-    display: flex;
-    justify-content: space-between;
-
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-}
-
-.video-info {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 18px;
-}
-
-.video-info h3 {
-    font-family: "Space Grotesk";
-    font-size: 22px;
-    margin-bottom: 6px;
-}
-
-.video-info p {
-    color: #777;
-    font-size: 13px;
-}
-
-.arrow {
-    color: var(--accent);
-    font-size: 25px;
-}
-
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 70px 25px;
-}
-
-.video-card {
-    min-width: 0;
-}
-
-.video-container {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: #111;
-    overflow: hidden;
-    border: 1px solid #252525;
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-}
-
-.video-overlay {
-    position: absolute;
-    pointer-events: none;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-
-    display: flex;
-    justify-content: space-between;
-
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-}
-
-.video-info {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 18px;
-}
-
-.video-info h3 {
-    font-family: "Space Grotesk";
-    font-size: 22px;
-    margin-bottom: 6px;
-}
-
-.video-info p {
-    color: #777;
-    font-size: 13px;
-}
-
-.arrow {
-    color: var(--accent);
-    font-size: 25px;
-}
-
-
 
 
 /* =========================================================
@@ -1443,6 +1321,10 @@ footer {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+}
+
+
 /* =========================================================
    TOOLS & SOFTWARE
 ========================================================= */
@@ -1797,4 +1679,342 @@ footer {
   }
 
 }
+
+
+/* =========================================================
+   GRAPHIC DESIGN GALLERY
+   Featured slide + thumbnail strip
+========================================================= */
+
+.design {
+  border-top: 1px solid var(--border);
+}
+
+.gallery {
+  width: 100%;
+  max-width: 1040px;
+}
+
+/* ----- Featured slide ----- */
+
+.gallery-stage {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow: hidden;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.gallery-stage:focus-visible {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* Fixed frame so posters, squares and logos all sit in the same space */
+.gallery-media {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 16 / 10;
+
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 70%),
+    var(--bg-soft);
+}
+
+.gallery-media img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  padding: 22px;
+
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.gallery-stage.is-changing .gallery-media img {
+  opacity: 0;
+  transform: scale(0.985);
+}
+
+.gallery-missing {
+  position: absolute;
+  inset: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  border: 1px dashed var(--border-hover);
+  border-radius: var(--radius-sm);
+
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.gallery-missing[hidden],
+.gallery-media img[hidden] {
+  display: none;
+}
+
+.gallery-caption {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 20px 24px;
+
+  border-top: 1px solid var(--border);
+}
+
+.gallery-caption h3 {
+  margin-bottom: 5px;
+
+  font-family: "Manrope", sans-serif;
+  font-size: 1.15rem;
+}
+
+.gallery-caption p {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.gallery-count {
+  flex-shrink: 0;
+
+  font-family: "Manrope", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+
+  color: var(--text-soft);
+}
+
+/* ----- Progress bar + dots ----- */
+
+.gallery-progress {
+  height: 2px;
+  margin-top: 22px;
+
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.gallery-progress-fill {
+  display: block;
+
+  height: 100%;
+  width: 0;
+
+  background: #fff;
+
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+
+  margin-top: 6px;
+}
+
+/* Dots keep a 24px tap target; the visible dot is drawn with ::before */
+.gallery-dots .dot {
+  position: relative;
+
+  width: 24px;
+  height: 24px;
+  min-height: 0;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+}
+
+.gallery-dots .dot::before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--text-muted);
+
+  transform: translate(-50%, -50%);
+
+  transition: var(--transition);
+}
+
+.gallery-dots .dot:hover {
+  transform: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.gallery-dots .dot:hover::before {
+  background: var(--text-soft);
+}
+
+.gallery-dots .dot.active::before {
+  width: 20px;
+
+  border-radius: 999px;
+
+  background: #fff;
+}
+
+.gallery-dots .dot:focus-visible,
+.thumb:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ----- Thumbnail strip ----- */
+
+.gallery-thumbs {
+  display: flex;
+  gap: 12px;
+
+  margin-top: 18px;
+  padding-bottom: 10px;
+
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+
+.thumb {
+  position: relative;
+
+  flex: 0 0 132px;
+  width: 132px;
+  height: 94px;
+  min-height: 0;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+
+  background: var(--bg-soft);
+
+  scroll-snap-align: start;
+
+  opacity: 0.55;
+
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.thumb:hover {
+  transform: none;
+  background: var(--bg-soft);
+  box-shadow: none;
+
+  opacity: 0.9;
+}
+
+.thumb.active {
+  opacity: 1;
+
+  border-color: #fff;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* Missing image placeholder in the strip */
+.thumb.is-missing img {
+  visibility: hidden;
+}
+
+.thumb.is-missing::after {
+  content: "+";
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+/* ----- Gallery: tablet ----- */
+
+@media screen and (max-width: 1000px) {
+
+  .gallery-media {
+    aspect-ratio: 4 / 3;
+  }
+
+}
+
+/* ----- Gallery: mobile ----- */
+
+@media screen and (max-width: 768px) {
+
+  .gallery-media {
+    aspect-ratio: 1 / 1;
+  }
+
+  .gallery-media img {
+    padding: 14px;
+  }
+
+  .gallery-missing {
+    inset: 14px;
+  }
+
+  .gallery-caption {
+    padding: 16px 18px;
+  }
+
+  .thumb {
+    flex-basis: 96px;
+    width: 96px;
+    height: 76px;
+  }
+
+  .work {
+    padding-top: 90px;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gallery-media img,
+  .gallery-progress-fill {
+    transition: none;
+  }
+
 }
